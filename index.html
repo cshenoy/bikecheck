@@ -14,22 +14,47 @@
   </head>
 
   <body>
-    <!-- <script type="text/javascript">
-      Parse.initialize("APPLICATION_ID", "JAVASCRIPT_KEY");
+    <div id="bike-check">
+      <section class="main"></section>
+        <div class="onepcssgrid-1000 clearfix">
+          <header>
+            <h1 class="align-center">BikeCheck</h1>
+          </header>
+          <section class="main-content"></section>
+        </div>
+      </section>
+    </div>
 
-      var TestObject = Parse.Object.extend("TestObject");
-      var testObject = new TestObject();
-        testObject.save({foo: "bar"}, {
-        success: function(object) {
-          $(".success").show();
-        },
-        error: function(model, error) {
-          $(".error").show();
-        }
-      });
-    </script> -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
+    <!-- TEMPLATES -->
+    <script type="text/template" id="login-tmpl">
+      <header id="header"></header>
+      <div class="login">
+        <form class="login-form">
+          <h2>Log In</h2>
+          <div class="error" style="display:none"></div>
+          <input type="text" id="login-username" placeholder="Username" />
+          <input type="password" id="login-password" placeholder="Password" />
+          <button>Log In</button>
+        </form>
+
+        <form class="signup-form">
+          <h2>Sign Up</h2>
+          <div class="error" style="display:none"></div>
+          <input type="text" id="signup-username" placeholder="Username" />
+          <input type="password" id="signup-password" placeholder="Create a Password" />
+          <button>Sign Up</button>
+        </form>
+      </div>
+    </script>
+
+    <!-- LIBRARIES -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="public/js/lib/underscore.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
+
+    <!-- APP -->
+    <script src="public/js/bike_check.js"></script>
+    <script src="public/js/views/log_in.js"></script>
     <script src="public/js/app.js"></script>
   </body>
 </html>
