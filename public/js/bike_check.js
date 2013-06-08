@@ -6,7 +6,8 @@ var BikeCheck = {
 
   initialize: function() {
     var view,
-      $elem = $('.menu-nav');
+        map
+        $elem = $('.menu-nav');
     if (Parse.User.current()) {
       // view = new BikeCheck.Views.
       console.log('logged in!');
@@ -15,6 +16,7 @@ var BikeCheck = {
         view = new BikeCheck.Views.UserLoginActions();
         $elem.prepend(view.render().el);
     }
+    map = new BikeCheck.Views.Map();
   },
 
   toggleCallout: function(self, e) {

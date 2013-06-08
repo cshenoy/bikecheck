@@ -32,6 +32,10 @@
     <script src="/js/views/log_in.js"></script>
     <script src="/js/views/sign_up.js"></script>
 
+    <% if (typeof(map) !== 'undefined' && map) { %>
+      <script src="/js/views/map.js"></script>      
+    <% } %>
+
     <!-- APP INITIALIZATION -->
     <script src="/js/app.js"></script>
   </body>
