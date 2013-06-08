@@ -54,7 +54,7 @@ BikeCheck.Views.LogIn = Parse.View.extend({
       },
       error: function(user, error) {
         self.$(".signup-form .error").html(error.message).show();
-        this.$(".signup-form button").removeAttr("disabled");
+        self.$(".signup-form button").removeAttr("disabled");
       }
     });
 
