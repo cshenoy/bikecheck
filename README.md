@@ -1,7 +1,7 @@
 # BikeCheck
 
 ## Requirements
-- npm
+- node/npm
 - ...?
 
 ## Getting set up
