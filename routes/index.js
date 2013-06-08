@@ -5,8 +5,10 @@ routes = function(app){
 
 	// Home page with map full screen
 	app.get('/', function(req, res){
+		console.log(req.headers);
 		res.render('index', {
-			title: 'BikeCheck'
+			title: 'BikeCheck',
+			map: true
 		});
 	});
 };
