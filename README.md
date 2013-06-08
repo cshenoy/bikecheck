@@ -5,8 +5,10 @@ Requirements:
 - npm
 - ...?
 
-    $ npm install
-    $ node server.js
+```bash
+$ npm install
+$ node server.js
+```
 
 That's it!
 
