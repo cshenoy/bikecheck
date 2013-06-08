@@ -25,7 +25,6 @@
   position: relative
   height: 44pt
   font-size: 16pt
-  color: $white
 
 .menu-nav-link
   color: $white
@@ -34,6 +33,7 @@
   padding: 10pt
   cursor: pointer
   position: relative
+  color: $white
   &:hover
     background-color: transparent
     color: #1abc9c
@@ -54,6 +54,7 @@
   background-color: $white
   min-height: 100px
   display: none
+  color: inherit
   &:before
     right: 50%
     margin-right: -7px
@@ -97,6 +98,9 @@
     margin-right: 15px
 
 .menu-nav-link.has-callout.active
-  .menu-nav-link-dropdown.menu-user
+  .menu-user
     display: table
 
+.menu-login.active
+  display: table
+  right: 0

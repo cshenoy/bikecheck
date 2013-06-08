@@ -4,15 +4,27 @@ $(function() {
                    "5W0E5XDFoKa2OHRSKbQt6bVu1mmIRzjrHDnALhww");
 
   BikeCheck.initialize();
-});
 
-// // var TestObject = Parse.Object.extend("TestObject");
-// // var testObject = new TestObject();
-// //   testObject.save({foo: "bar"}, {
-// //   success: function(object) {
-// //     $(".success").show();
-// //   },
-// //   error: function(model, error) {
-// //     $(".error").show();
-// //   }
-// // });
+
+
+  // FUCK ALL OF THIS
+  $('.menu .has-callout').mouseenter(function(e) {
+      $('.menu-nav-link-dropdown').removeClass('active')
+      return BikeCheck.toggleCallout(this);
+  }).mouseleave(function(e) {
+    if ($(e.target).is('.menu-nav-link-dropdown')) {
+      return $('.menu-nav-link-dropdown').removeClass('active');
+    }
+  });
+
+  $('.menu .has-callout').on('click', function(e) {
+    return BikeCheck.toggleCallout(this);
+  });
+
+  $('body').click(function(e) {
+    console.log($(e.currentTarget));
+    if (!$(e.target).is('.menu-nav-link-dropdown *, .menu-nav-link-dropdown')) {
+      return $('.menu-nav-link-dropdown.active').removeClass('active');
+    }
+  });
+});

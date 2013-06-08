@@ -255,8 +255,7 @@ a {
   display: table;
   position: relative;
   height: 44pt;
-  font-size: 16pt;
-  color: white; }
+  font-size: 16pt; }
 
 .menu-nav-link {
   color: white;
@@ -264,7 +263,8 @@ a {
   vertical-align: middle;
   padding: 10pt;
   cursor: pointer;
-  position: relative; }
+  position: relative;
+  color: white; }
   .menu-nav-link:hover {
     background-color: transparent;
     color: #1abc9c; }
@@ -284,7 +284,8 @@ a {
   float: left;
   background-color: white;
   min-height: 100px;
-  display: none; }
+  display: none;
+  color: inherit; }
   .menu-nav-link-dropdown:before {
     right: 50%;
     margin-right: -7px;
@@ -327,8 +328,12 @@ a {
     width: 14px;
     margin-right: 15px; }
 
-.menu-nav-link.has-callout.active .menu-nav-link-dropdown.menu-user {
+.menu-nav-link.has-callout.active .menu-user {
   display: table; }
+
+.menu-login.active {
+  display: table;
+  right: 0; }
 
 #map-canvas {
   height: 100%; }
