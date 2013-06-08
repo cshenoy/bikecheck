@@ -20,6 +20,11 @@
       <button id="signup-submit">Sign Up</button>
     </script>
 
+    <script type="text/template" id="user-nav-tmpl">
+      <a title="User Welcome" class="menu-nav-link">Hello, <span class="user-first-name"></span>!</a>
+      <a title="Sign out" class="menu-nav-link logout"><i class="icon-off"></i></a>
+    </script>
+
     <!-- LIBRARIES -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="/js/lib/underscore.js"></script>
@@ -27,13 +32,13 @@
 
     <!-- APP RESOURCES -->
     <script src="/js/bike_check.js"></script>
-    <script src="/js/mixins/user_mgmt_mixins.js"></script>
     <script src="/js/views/user_login_actions.js"></script>
     <script src="/js/views/log_in.js"></script>
     <script src="/js/views/sign_up.js"></script>
+    <script src="/js/views/user_nav.js"></script>
 
     <% if (typeof(map) !== 'undefined' && map) { %>
-      <script src="/js/views/map.js"></script>      
+      <script src="/js/views/map.js"></script>
     <% } %>
 
     <!-- APP INITIALIZATION -->

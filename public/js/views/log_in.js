@@ -3,7 +3,7 @@ BikeCheck.Views.LogIn = Parse.View.extend({
   className: 'login-form',
   template: _.template($('#login-tmpl').html()),
   events: {
-    'submit #login-submit': 'logIn'
+    'submit': 'logIn'
   },
 
   initialize: function() {
@@ -12,18 +12,14 @@ BikeCheck.Views.LogIn = Parse.View.extend({
 
   render: function() {
     this.$el.html(this.template());
-    this.delegateEvents();
     return this;
   },
 
   attemptLogIn: function(creds) {
     var self = this;
-    return Parse.User.logIn(creds.username, obj.password, {
+    Parse.User.logIn(creds.username, creds.password, {
       success: function(user) {
-        console.log('success!');
-        // load some new view!
-        self.undelegateEvents();
-        delete self;
+        BikeCheck.renderUserNav();
      },
       error: function(user, error) {
         self.$('.login-form .error').html('Invalid username or password. Please try again.').show();
@@ -34,7 +30,7 @@ BikeCheck.Views.LogIn = Parse.View.extend({
 
   logIn: function(e) {
     e.preventDefault();
-    var creds = this.getLoginCreds('login');
+    var creds = BikeCheck.getLoginCreds('login');
     this.attemptLogIn(creds);
     return this.$('.login-submit').attr('disabled', 'disabled');
   }
