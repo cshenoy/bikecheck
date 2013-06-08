@@ -1,22 +1,23 @@
     <!-- TEMPLATES -->
-    <script type="text/template" id="login-tmpl">
-      <div class="login">
-        <form class="login-form">
-          <h2>Log In</h2>
-          <div class="error" style="display:none"></div>
-          <input type="text" id="login-username" placeholder="Username" />
-          <input type="password" id="login-password" placeholder="Password" />
-          <button id="login-submit">Log In</button>
-        </form>
+    <script type="text/template" id="user-login-actions-tmpl">
+      <a class="menu-nav-link" title="Sign up" data-action="signup">Sign up</a>
+      <a class="menu-nav-link" title="Sign in" data-action="login">Log in</a>
+    </script>
 
-        <form class="signup-form">
-          <h2>Sign Up</h2>
-          <div class="error" style="display:none"></div>
-          <input type="text" id="signup-username" placeholder="Username" />
-          <input type="password" id="signup-password" placeholder="Create a Password" />
-          <button id="signup-submit">Sign Up</button>
-        </form>
-      </div>
+    <script type="text/template" id="login-tmpl">
+      <h2>Log In</h2>
+      <div class="error" style="display:none"></div>
+      <input type="text" id="login-username" placeholder="Username" />
+      <input type="password" id="login-password" placeholder="Password" />
+      <button id="login-submit">Log In</button>
+    </script>
+
+    <script type="text/template" id="signup-tmpl">
+      <h2>Sign Up</h2>
+      <div class="error" style="display:none"></div>
+      <input type="text" id="signup-username" placeholder="Username" />
+      <input type="password" id="signup-password" placeholder="Create a Password" />
+      <button id="signup-submit">Sign Up</button>
     </script>
 
     <!-- LIBRARIES -->
@@ -26,7 +27,10 @@
 
     <!-- APP RESOURCES -->
     <script src="/js/bike_check.js"></script>
+    <script src="/js/mixins/user_mgmt_mixins.js"></script>
+    <script src="/js/views/user_login_actions.js"></script>
     <script src="/js/views/log_in.js"></script>
+    <script src="/js/views/sign_up.js"></script>
 
     <!-- APP INITIALIZATION -->
     <script src="/js/app.js"></script>

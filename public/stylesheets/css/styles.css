@@ -224,6 +224,9 @@ a {
 .vertical-middle {
   vertical-align: middle; }
 
+#bike-check {
+  margin-top: 54pt; }
+
 .menu {
   width: 100%;
   height: 44pt;
@@ -320,8 +323,3 @@ a {
 
 .menu-nav-link.has-callout.active .menu-nav-link-dropdown.menu-user {
   display: table; }
-
-a {
-  color: #1abc9c;
-  transition: 0.25s;
-  -webkit-backface-visibility: hidden; }
