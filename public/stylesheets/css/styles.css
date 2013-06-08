@@ -18,7 +18,8 @@ body {
   font: 14px/1.231 "Lato", sans-serif;
   color: #34495e;
   background-color: white;
-  line-height: 1; }
+  line-height: 1;
+  height: 100%; }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block; }
@@ -225,7 +226,7 @@ a {
   vertical-align: middle; }
 
 #bike-check {
-  margin-top: 54pt; }
+  margin-top: 44pt; }
 
 a {
   color: #1abc9c;
@@ -328,14 +329,6 @@ a {
 
 .menu-nav-link.has-callout.active .menu-nav-link-dropdown.menu-user {
   display: table; }
-
-html {
-  height: 100%; }
-
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0; }
 
 #map-canvas {
   height: 100%; }
