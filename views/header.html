@@ -8,11 +8,32 @@
     <meta name="viewport" content="width=device-width">
     <title><%= title %></title>
 
-    <link rel="stylesheet" type="text/css" href="public/stylesheets/css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="public/stylesheets/lib/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/lib/font-awesome.min.css" />
     <!-- [if lt IE 8]
       <link rel="stylesheet" type="text/css" href="public/stylesheets/lib/font-awesome-ie7.min.css" />
     -->
-    <script src="public/js/lib/prefixfree.min.js"></script>
+    <% if (typeof(map) !== 'undefined' && map) { %>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiIPYCyy-VPtDpe3Vbx3o3KcJhu9R7txw&sensor=true"></script>
+      <script type="text/javascript">
+        function initialize() {
+          var mapOptions = {
+            center: new google.maps.LatLng(38.8935965, -77.014576),
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          var map = new google.maps.Map(document.getElementById("map-canvas"),
+              mapOptions);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <% } %>
+    <script src="/js/lib/prefixfree.min.js"></script>
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+      #map-canvas img {max-width:none}
+    </style>
   </head>
   <body>
