@@ -1,0 +1,86 @@
+.modal-backdrop
+  display: none
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  z-index: 999
+  background-color: #000
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"
+  opacity: 0.5
+  filter: alpha(opacity=50)
+  overflow: auto
+  display: block
+
+.modal
+  border-radius: 6px
+  box-shadow: inset 0 -1px 0 #c2beb6,0 1px 0 rgba(0,0,0,0.3),0 1px 20px rgba(0,0,0,0.6)
+  position: fixed
+  visibility: visible
+  top: 90px
+  left: 50%
+  height: auto
+  width: 460px
+  display: block
+  z-index: 999
+  margin-left: -230px
+  overflow: visible
+  background-color: #f7f7f7
+  border-bottom: 2px solid #d8d4cb
+  background-clip: padding-box
+
+.modal-header
+  position: relative
+  box-shadow: inset 0 1px 0 #fff
+  border-radius: 6px 6px 0 0
+  cursor: move
+  padding: 20px
+  background-color: #ececec
+  background-repeat: repeat-x
+  background-image: linear-gradient(top, #f5f5f5 0, #ececec 100%)
+  border-bottom: 1px solid #edeae4
+  text-shadow: 0 1px 0 #fff
+
+.modal-close, .modal-back
+  box-shadow: inset 1px 0 0 rgba(255,255,255,0.5)
+  border-radius: 0 6px 0 0
+  position: absolute
+  top: 0
+  cursor: pointer
+  color: #d7d7d7
+  text-decoration: none
+  &:hover
+    color: #c4c4c4
+
+.modal-back, .modal-close
+  text-align: center
+  font-size: 20px
+  text-shadow: 0 -1px 0 #afafaf,0 1px #fff
+
+.modal-back
+  border-radius: 6px 0 0 0
+  left: 0
+  border-right: 1px solid #ddd
+
+.modal-header-content-topleft, .modal-header-content-topright
+  display: block
+  margin: 21px
+
+.modal-action-text
+  font-size: 10px
+  display: block
+
+.modal-close
+  height: 100%
+  border-radius: 0 6px 0 0
+  right: 0
+  border-left: 1px solid #ddd
+
+.modal-title
+  font-size: 24px
+  line-height: 24px
+  font-weight: normal
+  text-align: center
+  color: #818282
+  margin: 0
