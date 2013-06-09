@@ -766,6 +766,14 @@ textarea[readonly] {
 ================================================== */
 /* Note: Design for a width of 320px */
 @media only screen and (max-width: 767px) {
+  .menu-login.active {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%; }
+
   .modal {
     width: 100%;
     top: 0;

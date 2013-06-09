@@ -63,15 +63,19 @@ var BikeCheck = {
       });
     }
 
+    window.scrollTo(0, 1);
+
     return this;
   },
 
   appendToModalBody: function(el) {
+    window.scrollTo(0, 1);
     $('.modal-body').append(el);
     return this;
   },
 
   setModalBody: function(el) {
+    window.scrollTo(0, 1);
     $('.modal-body').html(el);
     return this;
   },
