@@ -41,10 +41,11 @@ BikeCheck.Views.Map = Parse.View.extend({
 		this.markerBtn.appendChild(insideBtn);
 
 		var controlText = document.createElement('div');
-		controlText.style.fontFamily = 'Arial,sans-serif';
-	  controlText.style.fontSize = '12px';
-	  controlText.style.paddingLeft = '4px';
-	  controlText.style.paddingRight = '4px';
+		controlText.style.fontFamily = 'Lato,Arial,sans-serif';
+	  controlText.style.fontSize = '16px';
+	  controlText.style.padding = '15px';
+	  controlText.style.backgroundColor = '#1ABC9C';
+	  controlText.style.color = '#fff';
 	  controlText.innerHTML = 'Add Marker!';
 	  insideBtn.appendChild(controlText);
 
