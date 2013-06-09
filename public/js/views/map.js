@@ -4,8 +4,10 @@ BikeCheck.Views.Map = Parse.View.extend({
 
   },
 
+  iconBase: '/images/markers/',
+
   initialize: function(){
-  	_.bindAll(this, 'add', 'addMarker', 'checkMarkers');
+  	_.bindAll(this, 'add', 'addMarker', 'checkMarkers', 'iconBase');
   	this.render();
   },
 
@@ -63,14 +65,14 @@ BikeCheck.Views.Map = Parse.View.extend({
 
     // b is a boolean to check whether loc is from map click
     // or db call
-    if (b) {
-      loc = new google.maps.LatLng(loc.jb, loc.kb);
-    }
+    if (b) loc = new google.maps.LatLng(loc.jb, loc.kb);
 
   	marker = new google.maps.Marker({
       position: loc,
       map: blig
     });
+
+    console.log(self.model.get('eventType'))
 
     var bikeEvent = new BikeCheck.Models.BikeEvent({ latLng: marker.position }),
         view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent, map: this.map, mapMarker: marker });
