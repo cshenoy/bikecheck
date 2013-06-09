@@ -10,9 +10,10 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
   },
 
   render: function() {
+    var self = this;
     this.$el.html(this.template());
     _.defer(function() {
-
+      return self.$('.bike-event-' + self.eventType).removeClass('hidden');
     });
     return this;
   }
