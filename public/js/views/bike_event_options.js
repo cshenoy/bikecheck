@@ -11,7 +11,7 @@ BikeCheck.Views.BikeEventOptions = Parse.View.extend({
 
   render: function() {
     this.$el.html(this.template());
-    _.defer(function() { BikeCheck.setModalTitle('Choose Category').removeModalBackButton(); });
+    _.defer(function() { BikeCheck.setModalTitle('Choose BikeCheck Type').removeModalBackButton(); });
     return this;
   },
 
