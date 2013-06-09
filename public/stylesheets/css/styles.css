@@ -249,9 +249,9 @@ a {
 .menu-brand {
   position: relative;
   display: block;
-  width: 140px;
-  height: 40px;
-  background: url(/images/logo.png) no-repeat;
+  width: 273px;
+  height: 60px;
+  background: url(/images/bikecheck_logo_sm.png) no-repeat;
   padding: 0;
   text-indent: -9999pt; }
 
@@ -422,10 +422,19 @@ a {
 .bike-event-option {
   height: 200px; }
 
+.bike-event-option.theft:hover .bike-event-theft {
+  background: url(/images/theft-turq1-65x65.png) no-repeat center center; }
+
 .bike-event-options-link {
   font-size: 22px; }
   .bike-event-options-link i {
     font-size: 65px; }
+
+.bike-event-theft {
+  display: inline-block;
+  width: 65px;
+  height: 65px;
+  background: url(/images/theft-turq2-65x65.png) no-repeat center center; }
 
 .onerow {
   margin: 20px; }
