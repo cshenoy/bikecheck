@@ -28,6 +28,10 @@ BikeCheck.Views.Map = Parse.View.extend({
 	  this.markerBtn.style.margin = '5px';
 	  this.markerBtn.className = 'add-marker';
 
+	  if (!Parse.User.current()) {
+	    this.markerBtn.className += ' hidden';
+	  }
+
 	  var insideBtn = document.createElement('div');
 	  insideBtn.style.borderWidth = '1px';
 	  insideBtn.style.borderStyle = 'solid';
@@ -58,8 +62,8 @@ BikeCheck.Views.Map = Parse.View.extend({
   	google.maps.event.addDomListenerOnce(this.map, 'click', this.addMarker);
   },
 
-  addMarker: function(bikeEvent, b){
-    var bikeEvent = new BikeCheck.Models.BikeEvent(bikeEvent);
+  addMarker: function(be, b){
+    var bikeEvent = new BikeCheck.Models.BikeEvent(be);
 
   	loc = bikeEvent.get('latLng') || bikeEvent.get('location'); // grabs just lat-long coords
   	var self = this,
@@ -69,67 +73,57 @@ BikeCheck.Views.Map = Parse.View.extend({
 
     // b is a boolean to check whether loc is from map click
     // or db call
-    if (b) loc = new google.maps.LatLng(loc.jb, loc.kb);
+    if (b) {
+      loc = new google.maps.LatLng(loc.jb, loc.kb);
+      marker = new google.maps.Marker({
+        position: loc,
+        map: blig,
+        icon: this.iconBase() + bikeEvent.get('eventType') + '.png'
+      });
 
-    //console.log(this.iconBase());
-    var markerEvent = this.iconBase + bikeEvent.get('eventType') + '.png';
-    marker = new google.maps.Marker({
-      position: loc,
-      map: blig,
-      icon: this.iconBase() + bikeEvent.get('eventType') + '.png'
-    });
+      var listItems = '';
 
-/*<<<<<<< HEAD
-
-    var bikeEvent = new BikeCheck.Models.BikeEvent({ latLng: marker.position }),
-        view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent, map: this.map, mapMarker: marker });
-    return BikeCheck.displayModal().appendToModalBody(view.render().el);
-=======*/
-    var listItems = '';
-
-    if (bikeEvent.get('eventType') === 'hazard') {
-      listItems += '<li>Hazard</li>';
-      listItems += '<li>Date: ' + bikeEvent.get('date') + '</li>';
-      if (bikeEvent.get('traffic') === true) {
-        listItems += '<li>' + 'Traffic!</li>';
+      if (bikeEvent.get('eventType') === 'hazard') {
+        listItems += '<li>Hazard</li>';
+        listItems += '<li>Date: ' + bikeEvent.get('date') + '</li>';
+        if (bikeEvent.get('traffic') === true) {
+          listItems += '<li>' + 'Traffic!</li>';
+        }
+        if (bikeEvent.get('laneClosed') === true) {
+          listItems += '<li>' + 'Lane Closed!</li>';
+        }
+        if (bikeEvent.get('accident') === true) {
+          listItems += '<li>' + 'Accident!</li>';
+        }
+        if (bikeEvent.get('other') === true) {
+          listItems += '<li>' + 'Something else is amiss...</li>';
+        }
+        listItems += '<li>' + bikeEvent.get('notes') + '</li>';
       }
-      if (bikeEvent.get('laneClosed') === true) {
-        listItems += '<li>' + 'Lane Closed!</li>';
+
+      if (bikeEvent.get('eventType') === 'theft') {
+        listItems += '<li>Theft</li>';
+        listItems += '<li>' + 'Date: ' + bikeEvent.get('date') + '</li>';
+        listItems += '<li>' + 'Time: ' + bikeEvent.get('time') + '</li>';
+        listItems += '<li>' + 'Bike Model: ' + bikeEvent.get('bikeModel') + '</li>';
+        listItems += '<li>' + 'Bike Serial: ' + bikeEvent.get('bikeSerial') + '</li>';
+        listItems += '<li>' + 'Notes: ' + bikeEvent.get('notes') + '</li>';
       }
-      if (bikeEvent.get('accident') === true) {
-        listItems += '<li>' + 'Accident!</li>';
-      }
-      if (bikeEvent.get('other') === true) {
-        listItems += '<li>' + 'Something else is amiss...</li>';
-      }
-      listItems += '<li>' + bikeEvent.get('notes') + '</li>';
-    }
 
-    if (bikeEvent.get('eventType') === 'theft') {
-      listItems += '<li>Theft</li>';
-      listItems += '<li>' + 'Date: ' + bikeEvent.get('date') + '</li>';
-      listItems += '<li>' + 'Time: ' + bikeEvent.get('time') + '</li>';
-      listItems += '<li>' + 'Bike Model: ' + bikeEvent.get('bikeModel') + '</li>';
-      listItems += '<li>' + 'Bike Serial: ' + bikeEvent.get('bikeSerial') + '</li>';
-      listItems += '<li>' + 'Notes: ' + bikeEvent.get('notes') + '</li>';
-    }
+      var contentString = '<div class="infobox">' +
+          '<ul>' + listItems + '</ul>' +
+        '</div>';
 
-    var contentString = '<div class="infobox">' +
-        '<ul>' + listItems + '</ul>' +
-      '</div>';
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
 
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(this.map, marker);
-    });
-
-    if (!b) {
-      bikeEvent.set({ latLng: marker.position });
-      var view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent, map: this.map, mapMarker: marker });
-      return BikeCheck.displayModal().appendToModalBody(view.render().el);
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(this.map, marker);
+      });
+    } else {
+        var view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent, map: this.map });
+        return BikeCheck.displayModal().appendToModalBody(view.render().el);
     }
   },
 
@@ -140,6 +134,5 @@ BikeCheck.Views.Map = Parse.View.extend({
         self.addMarker(d[i], true);
       }
     });
-
   }
 });
