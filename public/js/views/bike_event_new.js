@@ -11,8 +11,7 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
   initialize: function(attrs) {
     if (attrs) {
       this.eventType = attrs.eventType;
-      this.map = attrs.map
-      this.mapMarker = attrs.mapMarker;
+      this.map = attrs.map;
     }
   },
 
@@ -70,7 +69,8 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
       laneClosed : this.$('.bike-event-option.lane-closed:visible').hasClass('selected'),
       accident   : this.$('.bike-event-option.accident:visible').hasClass('selected'),
       other      : this.$('.bike-event-option.other:visible').hasClass('selected'),
-      notes      : this.$('#bike-event-bike-notes:visible').val()
+      notes      : this.$('#bike-event-bike-notes:visible').val(),
+      userId     : Parse.User.current().get('objectId')
     });
   },
 
@@ -78,8 +78,12 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
     self.$('.bike-event-submit').removeClass('disabled').text('Submit');
     self.$el.addClass('hidden');
 
+    var loc = new google.maps.LatLng(self.model.get('latLng').jb, self.model.get('latLng').kb);
+    var marker = new google.maps.Marker({
+      position: loc,
+      map: self.map
+    });
     var listItems = '';
-
     if (self.model.get('eventType') === 'hazard') {
       listItems += '<li>Hazard</li>';
       listItems += '<li>Date: ' + self.model.get('date') + '</li>';
@@ -115,8 +119,8 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
       content: contentString
     });
 
-    google.maps.event.addListener(self.mapMarker, 'click', function() {
-      infowindow.open(self.map, self.mapMarker);
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(self.map, marker);
     });
 
     self.map.setOptions({ draggableCursor:'pointer' });
