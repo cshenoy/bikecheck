@@ -766,6 +766,11 @@ textarea[readonly] {
 ================================================== */
 /* Note: Design for a width of 320px */
 @media only screen and (max-width: 767px) {
+  .menu-brand {
+    width: 70px;
+    height: 60px;
+    background: url(/images/bikecheck_logo_mobile.png) no-repeat; }
+
   .menu-login.active {
     position: fixed;
     width: 100%;
