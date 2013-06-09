@@ -17,5 +17,6 @@ BikeCheck.Views.UserNav = Parse.View.extend({
   logout: function() {
     BikeCheck.renderUserLoginActions();
     Parse.User.logOut();
+    $('.add-marker').addClass('hidden');
   }
 });

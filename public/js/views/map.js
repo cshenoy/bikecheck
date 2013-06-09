@@ -22,7 +22,7 @@ BikeCheck.Views.Map = Parse.View.extend({
 	  this.markerBtn = document.createElement('div');
 	  this.markerBtn.style.padding = '5px';
 	  this.markerBtn.style.margin = '5px';
-	  this.markerBtn.className = 'add-marker';
+	  this.markerBtn.className = 'add-marker hidden';
 
 	  var insideBtn = document.createElement('div');
 	  insideBtn.style.borderWidth = '1px';

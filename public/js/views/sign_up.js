@@ -20,6 +20,7 @@ BikeCheck.Views.SignUp = Parse.View.extend({
     Parse.User.signUp(creds.username, creds.password, { ACL: new Parse.ACL() }, {
       success: function(user) {
         BikeCheck.renderUserNav();
+        $('.add-marker').removeClass('hidden');
       },
       error: function(user, error) {
         self.$('.signup-form .error').html(error.message).show();
