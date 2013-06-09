@@ -303,3 +303,14 @@ textarea[readonly] {
     cursor: default;
   }
 }
+
+.btn.disabled, .btn[disabled] {
+  background-color: #95a5a6;
+  color: white;
+  cursor: default;
+  background-image: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  box-shadow: none;
+}
+

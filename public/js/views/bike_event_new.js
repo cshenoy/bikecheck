@@ -40,19 +40,20 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
   },
 
   submitBikeEvent: function(e) {
-    e.preventDefault();
-    var self = this;
-    this.$('.bike-event-submit').attr('disabled', 'disabled').val('Sending...');
-    if (this.setBikeEventAttrs()) {
-      this.model.save({
-        success: function() {
-          self.saved(self);
-        },
-        error: function() {
-          console.log('fuuuuuucckkkk!!!!');
-          self.$('.bike-event-submit').removeAttr('disabled').val('Submit');
-        }
-      });
+    if (!$(e.currentTarget).hasClass('disabled')) {
+      var self = this;
+      this.$('.bike-event-submit').addClass('disabled').text('Sending...');
+      if (this.setBikeEventAttrs()) {
+        this.model.save({
+          success: function() {
+            self.saved(self);
+          },
+          error: function() {
+            console.log('fuuuuuucckkkk!!!!');
+            self.$('.bike-event-submit').removeAttr('disabled').val('Submit');
+          }
+        });
+      }
     }
   },
 
@@ -71,7 +72,7 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
   },
 
   saved: function(self) {
-    self.$('.bike-event-submit').removeAttr('disabled').val('Submit');
+    self.$('.bike-event-submit').removeClass('disabled').text('Submit');
     self.$el.addClass('hidden');
     var view = new BikeCheck.Views.BikeEventSaved();
     return BikeCheck.setModalBody(view.render().el);
