@@ -55,7 +55,7 @@ var BikeCheck = {
     }
     $(modal.render().el).insertAfter('.modal-backdrop');
 
-    $('.modal').drags();
+    // $('.modal').drags();
 
     if (presetAttrs) {
       $.each(presetAttrs, function(index, value) {
