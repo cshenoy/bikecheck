@@ -1,3 +1,3 @@
 BikeCheck.Collections.BikeEvents = Parse.Collection.extend({
-  model: BikeCheck.Collections.BikeEvent
+  model: BikeCheck.Models.BikeEvent
 });

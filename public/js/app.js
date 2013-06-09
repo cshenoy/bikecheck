@@ -17,4 +17,13 @@ $(function() {
       return $('.menu-nav-link-dropdown.active').removeClass('active');
     }
   });
+
+  $(document).on('click', '.blah', function() {
+    var view = new BikeCheck.Views.BikeEventOptions();
+    return BikeCheck.displayModal().appendToModalBody(view.render().el);
+  });
+
+  $(document).on('click', '.modal-close', function() {
+    return BikeCheck.closeModal();
+  });
 });
