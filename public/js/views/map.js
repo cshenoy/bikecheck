@@ -15,13 +15,14 @@ BikeCheck.Views.Map = Parse.View.extend({
 	    zoom: 13,
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	  };
-	  
+
 	  this.map = new google.maps.Map(document.getElementById(this.id), this.mapOptions);
 
 	  // Add Marker Btn
 	  this.markerBtn = document.createElement('div');
 	  this.markerBtn.style.padding = '5px';
 	  this.markerBtn.style.margin = '5px';
+	  this.markerBtn.className = 'add-marker';
 
 	  var insideBtn = document.createElement('div');
 	  insideBtn.style.borderWidth = '1px';
@@ -65,27 +66,15 @@ BikeCheck.Views.Map = Parse.View.extend({
     if (b) {
       loc = new google.maps.LatLng(loc.jb, loc.kb);
     }
-  	
+
   	marker = new google.maps.Marker({
       position: loc,
       map: blig
     });
 
-    var contentString = '<div class="infobox">' +
-        '<ul>' +
-          '<li>Blah Blah</li>' +
-        '</ul>' +
-        '</div>';
-
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(self.map, marker);
-    });
- 		
-    this.map.setOptions({draggableCursor:'pointer'});
+    var bikeEvent = new BikeCheck.Models.BikeEvent({ latLng: marker.position }),
+        view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent, map: this.map, mapMarker: marker });
+    return BikeCheck.displayModal().appendToModalBody(view.render().el);
   },
 
   checkMarkers: function(){

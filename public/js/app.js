@@ -18,11 +18,11 @@ $(function() {
     }
   });
 
-  $(document).on('click', '.blah', function() {
-    var bikeEvent = new BikeCheck.Models.BikeEvent(),
-        view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent });
-    return BikeCheck.displayModal().appendToModalBody(view.render().el);
-  });
+  // $(document).on('click', '.blah', function() {
+  //   var bikeEvent = new BikeCheck.Models.BikeEvent(),
+  //       view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent });
+  //   return BikeCheck.displayModal().appendToModalBody(view.render().el);
+  // });
 
   $(document).on('click', '.modal-close, .modal-close-text', function() {
     return BikeCheck.closeModal();

@@ -5,8 +5,12 @@ BikeCheck.Views.BikeEventOptions = Parse.View.extend({
     'click .bike-event-option' : 'renderEventForm'
   },
 
-  initialize: function() {
+  initialize: function(attrs) {
     _.bindAll(this, 'render');
+    if (attrs) {
+      this.map = attrs.map;
+      this.mapMarker = attrs.mapMarker
+    }
   },
 
   render: function() {
@@ -17,8 +21,7 @@ BikeCheck.Views.BikeEventOptions = Parse.View.extend({
 
   renderEventForm: function(e) {
     var eventType = e.currentTarget.dataset.event_type,
-        bikeEvent = new BikeCheck.Models.BikeEvent(),
-        view = new BikeCheck.Views.BikeEventNew({ model: bikeEvent, eventType: eventType }),
+        view = new BikeCheck.Views.BikeEventNew({ model: this.model, eventType: eventType, map: this.map, mapMarker: this.mapMarker }),
         modalTitle;
     BikeCheck.appendToModalBody(view.render().el);
     modalTitle = this.getModalTitle(eventType);

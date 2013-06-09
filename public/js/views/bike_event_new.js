@@ -11,6 +11,8 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
   initialize: function(attrs) {
     if (attrs) {
       this.eventType = attrs.eventType;
+      this.map = attrs.map
+      this.mapMarker = attrs.mapMarker;
     }
   },
 
@@ -74,6 +76,23 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
   saved: function(self) {
     self.$('.bike-event-submit').removeClass('disabled').text('Submit');
     self.$el.addClass('hidden');
+
+    var contentString = '<div class="infobox">' +
+        '<ul>' +
+          '<li>'+self.model.get('eventType')+'</li>' +
+        '</ul>' +
+        '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    google.maps.event.addListener(self.mapMarker, 'click', function() {
+      infowindow.open(self.map, self.mapMarker);
+    });
+
+    self.map.setOptions({ draggableCursor:'pointer' });
+
     var view = new BikeCheck.Views.BikeEventSaved();
     return BikeCheck.setModalBody(view.render().el);
   }

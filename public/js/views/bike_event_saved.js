@@ -11,8 +11,10 @@ BikeCheck.Views.BikeEventSaved = Parse.View.extend({
   },
 
   addBikeEvent: function() {
-    var bikeEvent = new BikeCheck.Models.BikeEvent(),
-        view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent });
-    return BikeCheck.setModalBody(view.render().el);
+    BikeCheck.closeModal();
+    return $('.add-marker').click();
+    // var bikeEvent = new BikeCheck.Models.BikeEvent(),
+    //     view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent });
+    // return BikeCheck.setModalBody(view.render().el);
   }
 });
