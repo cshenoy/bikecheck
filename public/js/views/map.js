@@ -5,8 +5,12 @@ BikeCheck.Views.Map = Parse.View.extend({
   },
 
   initialize: function(){
-  	_.bindAll(this, 'add', 'addMarker', 'checkMarkers');
-  	this.render();
+    _.bindAll(this, 'add', 'addMarker', 'checkMarkers', 'iconBase');
+    this.render();
+  },
+
+  iconBase: function(){
+    return '/images/markers/';
   },
 
   render: function(){
@@ -73,8 +77,10 @@ BikeCheck.Views.Map = Parse.View.extend({
       loc = new google.maps.LatLng(loc.jb, loc.kb);
       marker = new google.maps.Marker({
         position: loc,
-        map: blig
+        map: blig,
+        icon: this.iconBase() + bikeEvent.get('eventType') + '.png'
       });
+
       var listItems = '';
 
       if (bikeEvent.get('eventType') === 'hazard') {

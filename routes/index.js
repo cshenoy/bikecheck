@@ -18,7 +18,6 @@ routes = function(app){
 
 	app.get('/json/all', function(req, res){
 		kaiseki.getObjects('BikeEvent', function(err, res, body, success){
-			console.log(body);
 			printAll(body, success);
 		});
 
