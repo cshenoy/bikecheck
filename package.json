@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "ejs": "*",
+    "kaiseki": "*",
     "express": "3.2.x"
   },
   "engines": {

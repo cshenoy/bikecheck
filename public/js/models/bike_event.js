@@ -1,3 +1,1 @@
-BikeCheck.Models.BikeEvent = Parse.Object.extend({
-  className: 'BikeEvent'
-});
+BikeCheck.Models.BikeEvent = Parse.Object.extend("BikeEvent");

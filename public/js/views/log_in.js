@@ -20,7 +20,7 @@ BikeCheck.Views.LogIn = Parse.View.extend({
     Parse.User.logIn(creds.username, creds.password, {
       success: function(user) {
         BikeCheck.renderUserNav();
-     },
+      },
       error: function(user, error) {
         self.$('.login-form .error').html('Invalid username or password. Please try again.').show();
         self.$('.login-submit').removeAttr('disabled');
