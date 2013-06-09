@@ -41,5 +41,44 @@ var BikeCheck = {
   renderLoginAction: function(action) {
     var view = action === 'signup' ? new BikeCheck.Views.SignUp() : new BikeCheck.Views.LogIn();
     return $('.menu-login-inner').html(view.render().el);
+  },
+
+  setModalTitle: function(text) {
+    $('.modal-title').text(text);
+    return this;
+  },
+
+  displayModal: function(presetAttrs) {
+    var modal = new BikeCheck.Views.Modal();
+    if (!$('.modal-backdrop').is(':visible')) {
+      $('body').append("<div class='modal-backdrop'></div>");
+    }
+    $(modal.render().el).insertAfter('.modal-backdrop');
+
+    $('.modal').drags();
+
+    if (presetAttrs) {
+      $.each(presetAttrs, function(index, value) {
+        return $("[name=" + index + "]").val(value);
+      });
+    }
+
+    return this;
+  },
+
+  appendToModalBody: function(el) {
+    $('.modal-body').html(el);
+    return this;
+  },
+
+  closeModal: function() {
+    $('.modal').remove();
+    $('.modal-backdrop').remove();
+    return this;
+  },
+
+  removeModalBackButton: function() {
+    $('.modal-header .back').remove();
+    return this;
   }
 };
