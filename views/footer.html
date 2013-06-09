@@ -39,30 +39,62 @@
     </script>
 
     <script type="text/template" id="bike-event-options">
-      <div class="col6" style="display:table;height:200px;">
-        <a style="display:table-cell;vertical-align:middle;font-size:22px">
-          <i class="icon-frown" style="font-size:65px"></i><br />
+      <div class="col6 bike-event-option theft table" data-event_type="theft">
+        <a class="bike-event-options-link vertical-middle table-cell">
+          <span class="bike-event-theft-icon"></span><br />
           Theft
         </a>
       </div>
-      <div class="col6 last" style="display:table;height:200px">
-        <a style="display:table-cell;vertical-align:middle;font-size:22px">
-          <i class="icon-warning-sign" style="font-size:65px"></i><br />
+      <div class="col6 last bike-event-option table" data-event_type="hazard">
+        <a class="bike-event-options-link vertical-middle table-cell">
+          <i class="icon-warning-sign"></i><br />
           Hazard
         </a>
       </div>
-      <div class="col6" style="display:table;height:200px;">
-        <a style="display:table-cell;vertical-align:middle;font-size:22px">
-          <i class="icon-cogs" style="font-size:65px"></i><br />
-          Bike Shop
-        </a>
+    </script>
+
+    <script type="text/template" id="bike-event-form-tmpl">
+      <div class="onerow clearfix hidden bike-event-theft">
+        <div class="col6">
+          <label for="bike-event-date">Date</label><br />
+          <input type="date" id="bike-event-date" autocomplete="off" placeholder="MM/DD/YYYY" />
+        </div>
+        <div class="col6 last">
+          <label for="bike-event-time">Time</label><br />
+          <input type="text" id="bike-event-time" placeholder="7:30am" />
+        </div>
       </div>
-      <div class="col6 last" style="display:table;height:200px">
-        <a style="display:table-cell;vertical-align:middle;font-size:22px">
-          <i class="icon-thumbs-down" style="font-size:65px"></i>
-          <i class="icon-thumbs-up" style="font-size:65px"></i><br />
-          Parking Situation
-        </a>
+      <div class="onerow clearfix hidden bike-event-theft">
+        <div class="col6">
+          <label for="bike-event-bike-type">Bike Type</label><br />
+          <input type="text" id="bike-event-bike-type" placeholder="Mountain, Hybrid, etc." />
+        </div>
+        <div class="col6 last">
+          <label for="bike-event-bike-model">Bike Model</label><br />
+          <input type="text" id="bike-event-bike-model" />
+        </div>
+      </div>
+      <div class="onerow clearfix hidden bike-event-theft">
+        <div class="col12">
+          <label for="bike-event-bike-serial">Serial Number (private)</label><br />
+          <input type="text" id="bike-event-bike-serial" />
+        </div>
+      </div>
+      <div class="onerow clearfix hidden bike-event-hazard">
+        <div class="col12">
+          <label for="bike-event-hazard-type">Hazard Type</label><br />
+          <input type="text" id="bike-event-hazard-type" placeholder="Accident, lane closed" />
+        </div>
+      </div>
+      <div class="onerow clearfix hidden bike-event-theft bike-event-hazard">
+        <div class="col12">
+          <label for="bike-event-bike-notes">Notes</label><br />
+          <textarea id="bike-event-bike-notes" style="width:90%"></textarea>
+        </div>
+      </div>
+
+      <div class="onerow clearfix">
+        <a class="bike-event-submit btn" title="Submit form">Submit info</a>
       </div>
     </script>
 
@@ -82,6 +114,7 @@
     <script src="/js/views/user_nav.js"></script>
     <script src="/js/views/modal.js"></script>
     <script src="/js/views/bike_event_options.js"></script>
+    <script src="/js/views/bike_event_new.js"></script>
 
     <% if (typeof(map) !== 'undefined' && map) { %>
       <script src="/js/views/map.js"></script>
