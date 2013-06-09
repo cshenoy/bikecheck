@@ -23,7 +23,8 @@
   border-radius: 6px;
   -webkit-backface-visibility: hidden;
   &:hover {
-    color: $white
+    color: $white;
+    background-color: $anchor-color-hover;
   }
 }
 

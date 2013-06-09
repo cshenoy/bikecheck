@@ -18,9 +18,27 @@ BikeCheck.Views.BikeEventOptions = Parse.View.extend({
   renderEventForm: function(e) {
     var eventType = e.currentTarget.dataset.event_type,
         bikeEvent = new BikeCheck.Models.BikeEvent(),
-        view = new BikeCheck.Views.BikeEventNew({ model: bikeEvent, eventType: eventType });
-    this.$el.addClass('hidden');
+        view = new BikeCheck.Views.BikeEventNew({ model: bikeEvent, eventType: eventType }),
+        modalTitle;
     BikeCheck.appendToModalBody(view.render().el);
+    modalTitle = this.getModalTitle(eventType);
+    BikeCheck.setModalTitle(modalTitle);
+    this.$el.addClass('hidden');
     return this;
+  },
+
+  getModalTitle: function(eventType) {
+    var text;
+    switch (eventType) {
+    case 'theft':
+      text = 'Missing Bike Info';
+      break;
+    case 'hazard':
+      text = 'Select Hazards';
+      break;
+    default:
+      text = "Info"
+    }
+    return text;
   }
 });

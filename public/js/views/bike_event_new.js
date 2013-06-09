@@ -3,7 +3,8 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
   className: 'bike-event-form clearfix',
   template: _.template($('#bike-event-form-tmpl').html()),
   events: {
-    'click .modal-back' : 'renderPreviousStep'
+    'click .modal-back' : 'renderPreviousStep',
+    'click .bike-event-hazard .bike-event-option' : 'selectHazard'
   },
 
   initialize: function(attrs) {
@@ -27,8 +28,13 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
     return this.$el.prepend(view.render().el);
   },
 
+  selectHazard: function(e) {
+    return $(e.currentTarget).toggleClass('selected');
+  },
+
   renderPreviousStep: function() {
-    this.$el.addClass('hidden');
-    return $('.bike-event-options-container').removeClass('hidden');
+    $('.bike-event-options-container').removeClass('hidden');
+    BikeCheck.setModalTitle('Choose Category');
+    return this.$el.addClass('hidden');
   }
 });
