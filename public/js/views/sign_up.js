@@ -3,7 +3,7 @@ BikeCheck.Views.SignUp = Parse.View.extend({
   className: 'signup-form',
   template: _.template($('#signup-tmpl').html()),
   events: {
-    'submit': 'signUp'
+    'click #signup-submit' : 'signUp'
   },
 
   initialize: function() {
