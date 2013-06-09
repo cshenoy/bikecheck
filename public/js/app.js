@@ -19,7 +19,8 @@ $(function() {
   });
 
   $(document).on('click', '.blah', function() {
-    var view = new BikeCheck.Views.BikeEventOptions();
+    var bikeEvent = new BikeCheck.Models.BikeEvent(),
+        view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent });
     return BikeCheck.displayModal().appendToModalBody(view.render().el);
   });
 
