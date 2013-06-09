@@ -1,13 +1,13 @@
 $(function() {
+  window.scrollTo(0, 1);
+
   Parse.$ = jQuery;
   Parse.initialize("JfnQBEqS47BirgQbg6LrlLzTBndhqWlOLU7p74zt",
                    "5W0E5XDFoKa2OHRSKbQt6bVu1mmIRzjrHDnALhww");
 
   BikeCheck.initialize();
 
-
-
-  // FUCK ALL OF THIS
+  // Shame...
   $(document).on('click', '.menu .has-callout', function(e) {
     return BikeCheck.toggleCallout(this);
   });
