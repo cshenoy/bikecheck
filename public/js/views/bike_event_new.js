@@ -36,7 +36,7 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
 
   renderPreviousStep: function() {
     $('.bike-event-options-container').removeClass('hidden');
-    BikeCheck.setModalTitle('Choose BikeCheck Type');
+    BikeCheck.setModalTitle('Choose Category');
     return this.$el.addClass('hidden');
   },
 
