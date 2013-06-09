@@ -5,7 +5,7 @@ BikeCheck.Views.Map = Parse.View.extend({
   },
 
   initialize: function(){
-  	_.bindAll(this, 'add', 'addMarker');
+  	_.bindAll(this, 'add', 'addMarker', 'checkMarkers');
   	this.render();
   },
 
@@ -43,6 +43,8 @@ BikeCheck.Views.Map = Parse.View.extend({
 
 	  google.maps.event.addDomListener(this.markerBtn, 'click', this.add);
 
+    this.checkMarkers();
+
 		return this;
   },
 
@@ -51,25 +53,48 @@ BikeCheck.Views.Map = Parse.View.extend({
   	google.maps.event.addDomListenerOnce(this.map, 'click', this.addMarker);
   },
 
-  addMarker: function(loc){
-  	loc = loc.latLng; // loc grabs just lat-long coords
-  	var blig = this.map,
+  addMarker: function(loc, b){
+  	loc = loc.latLng || loc.location; // loc grabs just lat-long coords
+  	var self = this,
+        blig = this.map,
   			marker,
   			newBikeEvent;
+
+    // b is a boolean to check whether loc is from map click
+    // or db call
+    if (b) {
+      loc = new google.maps.LatLng(loc.jb, loc.kb);
+    }
   	
   	marker = new google.maps.Marker({
       position: loc,
       map: blig
     });
+
+    var contentString = '<div class="infobox">' +
+        '<ul>' +
+          '<li>Blah Blah</li>' +
+        '</ul>' +
+        '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(self.map, marker);
+    });
  		
- 		newBikeEvent = new BikeCheck.Models.BikeEvent();
- 		newBikeEvent.save({
- 			"location": loc
- 		}, {
- 			success: function(newBikeEvent){
- 				console.log("SUCCESS! ", newBikeEvent);
- 			}
- 		});
     this.map.setOptions({draggableCursor:'pointer'});
+  },
+
+  checkMarkers: function(){
+    var self = this;
+    $.get('/json/all', function(d){
+      for(var i in d){
+        self.addMarker(d[i], true);
+      }
+    });
+
   }
 });
