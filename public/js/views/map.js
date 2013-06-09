@@ -54,8 +54,10 @@ BikeCheck.Views.Map = Parse.View.extend({
   	google.maps.event.addDomListenerOnce(this.map, 'click', this.addMarker);
   },
 
-  addMarker: function(loc, b){
-  	loc = loc.latLng || loc.location; // loc grabs just lat-long coords
+  addMarker: function(bikeEvent, b){
+    var bikeEvent = new BikeCheck.Models.BikeEvent(bikeEvent);
+
+  	loc = bikeEvent.get('latLng') || bikeEvent.get('location'); // grabs just lat-long coords
   	var self = this,
         blig = this.map,
   			marker,
@@ -72,51 +74,50 @@ BikeCheck.Views.Map = Parse.View.extend({
       map: blig
     });
 
-    // var listItems = '';
-    //
-    // if (self.model.get('eventType') === 'hazard') {
-    //   listItems += '<li>Hazard</li>';
-    //   listItems += '<li>Date: ' + self.model.get('date') + '</li>';
-    //   if (self.model.get('traffic') === true) {
-    //     listItems += '<li>' + 'Traffic!</li>';
-    //   }
-    //   if (self.model.get('laneClosed') === true) {
-    //     listItems += '<li>' + 'Lane Closed!</li>';
-    //   }
-    //   if (self.model.get('accident') === true) {
-    //     listItems += '<li>' + 'Accident!</li>';
-    //   }
-    //   if (self.model.get('other') === true) {
-    //     listItems += '<li>' + 'Something else is amiss...</li>';
-    //   }
-    //   listItems += '<li>' + self.model.get('notes') + '</li>';
-    // }
-    //
-    // if (self.model.get('eventType') === 'theft') {
-    //   listItems += '<li>Theft</li>';
-    //   listItems += '<li>' + 'Date: ' + self.model.get('date') + '</li>';
-    //   listItems += '<li>' + 'Time: ' + self.model.get('time') + '</li>';
-    //   listItems += '<li>' + 'Bike Model: ' + self.model.get('bikeModel') + '</li>';
-    //   listItems += '<li>' + 'Bike Serial: ' + self.model.get('bikeSerial') + '</li>';
-    //   listItems += '<li>' + 'Notes: ' + self.model.get('notes') + '</li>';
-    // }
-    //
-    // var contentString = '<div class="infobox">' +
-    //     '<ul>' + listItems + '</ul>' +
-    //   '</div>';
-    //
-    // var infowindow = new google.maps.InfoWindow({
-    //   content: contentString
-    // });
-    //
-    // google.maps.event.addListener(self.mapMarker, 'click', function() {
-    //   infowindow.open(self.map, self.mapMarker);
-    // });
+    var listItems = '';
 
+    if (bikeEvent.get('eventType') === 'hazard') {
+      listItems += '<li>Hazard</li>';
+      listItems += '<li>Date: ' + bikeEvent.get('date') + '</li>';
+      if (bikeEvent.get('traffic') === true) {
+        listItems += '<li>' + 'Traffic!</li>';
+      }
+      if (bikeEvent.get('laneClosed') === true) {
+        listItems += '<li>' + 'Lane Closed!</li>';
+      }
+      if (bikeEvent.get('accident') === true) {
+        listItems += '<li>' + 'Accident!</li>';
+      }
+      if (bikeEvent.get('other') === true) {
+        listItems += '<li>' + 'Something else is amiss...</li>';
+      }
+      listItems += '<li>' + bikeEvent.get('notes') + '</li>';
+    }
+
+    if (bikeEvent.get('eventType') === 'theft') {
+      listItems += '<li>Theft</li>';
+      listItems += '<li>' + 'Date: ' + bikeEvent.get('date') + '</li>';
+      listItems += '<li>' + 'Time: ' + bikeEvent.get('time') + '</li>';
+      listItems += '<li>' + 'Bike Model: ' + bikeEvent.get('bikeModel') + '</li>';
+      listItems += '<li>' + 'Bike Serial: ' + bikeEvent.get('bikeSerial') + '</li>';
+      listItems += '<li>' + 'Notes: ' + bikeEvent.get('notes') + '</li>';
+    }
+
+    var contentString = '<div class="infobox">' +
+        '<ul>' + listItems + '</ul>' +
+      '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(this.map, marker);
+    });
 
     if (!b) {
-      var bikeEvent = new BikeCheck.Models.BikeEvent({ latLng: marker.position }),
-          view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent, map: this.map, mapMarker: marker });
+      bikeEvent.set({ latLng: marker.position });
+      var view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent, map: this.map, mapMarker: marker });
       return BikeCheck.displayModal().appendToModalBody(view.render().el);
     }
   },
