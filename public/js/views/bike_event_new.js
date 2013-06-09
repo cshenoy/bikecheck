@@ -81,7 +81,8 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
     var loc = new google.maps.LatLng(self.model.get('latLng').jb, self.model.get('latLng').kb);
     var marker = new google.maps.Marker({
       position: loc,
-      map: self.map
+      map: self.map,
+      icon: '/images/markers/' + self.model.get('eventType') + '.png'
     });
     var listItems = '';
     if (self.model.get('eventType') === 'hazard') {
