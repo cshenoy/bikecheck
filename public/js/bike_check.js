@@ -67,7 +67,7 @@ var BikeCheck = {
   },
 
   appendToModalBody: function(el) {
-    $('.modal-body').html(el);
+    $('.modal-body').append(el);
     return this;
   },
 
