@@ -71,6 +71,11 @@ var BikeCheck = {
     return this;
   },
 
+  setModalBody: function(el) {
+    $('.modal-body').html(el);
+    return this;
+  },
+
   closeModal: function() {
     $('.modal').remove();
     $('.modal-backdrop').remove();

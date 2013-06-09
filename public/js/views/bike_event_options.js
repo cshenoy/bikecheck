@@ -1,6 +1,6 @@
 BikeCheck.Views.BikeEventOptions = Parse.View.extend({
   className: 'bike-event-options-container align-center',
-  template: _.template($('#bike-event-options').html()),
+  template: _.template($('#bike-event-options-tmpl').html()),
   events: {
     'click .bike-event-option' : 'renderEventForm'
   },

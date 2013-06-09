@@ -442,6 +442,13 @@ a {
 .bike-event-hazard .bike-event-option.selected {
   background-color: #2c3e50; }
 
+.bike-event-saved-text {
+  font-size: 18px;
+  margin-bottom: 20px; }
+
+.bike-event-saved-add {
+  margin: 20px 0; }
+
 .login-form, .signup-form {
   padding: 20px; }
   .login-form h2, .login-form input, .signup-form h2, .signup-form input {
@@ -734,3 +741,11 @@ textarea[readonly] {
   border-color: transparent;
   color: #cad2d3;
   cursor: default; }
+  input[disabled]:hover,
+  input[readonly]:hover,
+  textarea[disabled]:hover,
+  textarea[readonly]:hover {
+    background-color: #eaeded;
+    border-color: transparent;
+    color: #cad2d3;
+    cursor: default; }

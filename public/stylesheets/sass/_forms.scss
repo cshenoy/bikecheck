@@ -295,4 +295,11 @@ textarea[readonly] {
   background-color: #eaeded;
   border-color: transparent;
   color: #cad2d3;
-  cursor: default; }
+  cursor: default;
+  &:hover {
+    background-color: #eaeded;
+    border-color: transparent;
+    color: #cad2d3;
+    cursor: default;
+  }
+}

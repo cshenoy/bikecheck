@@ -24,7 +24,7 @@ $(function() {
     return BikeCheck.displayModal().appendToModalBody(view.render().el);
   });
 
-  $(document).on('click', '.modal-close', function() {
+  $(document).on('click', '.modal-close, .modal-close-text', function() {
     return BikeCheck.closeModal();
   });
 });

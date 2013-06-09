@@ -1,7 +1,7 @@
 BikeCheck.Views.Modal = Parse.View.extend({
   tagName: 'section',
   className: 'modal',
-  template: _.template($('#modal').html()),
+  template: _.template($('#modal-tmpl').html()),
 
   render: function() {
     this.$el.html(this.template());

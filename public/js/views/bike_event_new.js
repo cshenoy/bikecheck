@@ -39,14 +39,18 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
     return this.$el.addClass('hidden');
   },
 
-  submitBikeEvent: function() {
+  submitBikeEvent: function(e) {
+    e.preventDefault();
+    var self = this;
+    this.$('.bike-event-submit').attr('disabled', 'disabled').val('Sending...');
     if (this.setBikeEventAttrs()) {
       this.model.save({
         success: function() {
-          console.log('yay!!!!');
+          self.saved(self);
         },
         error: function() {
           console.log('fuuuuuucckkkk!!!!');
+          self.$('.bike-event-submit').removeAttr('disabled').val('Submit');
         }
       });
     }
@@ -64,5 +68,12 @@ BikeCheck.Views.BikeEventNew = Parse.View.extend({
       accident   : this.$('.bike-event-option.accident:visible').hasClass('selected'),
       other      : this.$('.bike-event-option.other:visible').hasClass('selected')
     });
+  },
+
+  saved: function(self) {
+    self.$('.bike-event-submit').removeAttr('disabled').val('Submit');
+    self.$el.addClass('hidden');
+    var view = new BikeCheck.Views.BikeEventSaved();
+    return BikeCheck.setModalBody(view.render().el);
   }
 });

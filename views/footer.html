@@ -25,7 +25,7 @@
       <a title="Sign out" class="menu-nav-link logout"><i class="icon-off"></i></a>
     </script>
 
-    <script type="text/template" id="modal">
+    <script type="text/template" id="modal-tmpl">
       <div class="modal-header clearfix">
         <h1 class="modal-title"></h1>
         <a title="Close Modal" class="modal-close">
@@ -44,7 +44,7 @@
       </span>
     </script>
 
-    <script type="text/template" id="bike-event-options">
+    <script type="text/template" id="bike-event-options-tmpl">
       <div class="col6 bike-event-option theft table" data-event_type="theft">
         <a class="bike-event-options-link vertical-middle table-cell">
           <span class="bike-event-theft-icon"></span><br />
@@ -124,7 +124,21 @@
       </div>
 
       <div class="onerow clearfix">
-        <a class="bike-event-submit btn" title="Submit form">Submit info</a>
+        <input type="submit" class="bike-event-submit btn" value="Submit" />
+      </div>
+    </script>
+
+    <script type="text/template" id="bike-event-saved-tmpl">
+      <div class="onerow clearfix">
+        <div class="col12 align-center">
+          <div class="bike-event-saved-text">
+            Here&#39;s to not ending up<br />
+            like this poor fellow:
+          </div>
+          <img src="/images/man_falling.jpg" alt="Man falling image. Source: Google images" />
+          <a title="Log in" class="btn bike-event-saved-add">Add another BikeCheck</a>
+          or <a title="Close Modal" class="modal-close-text">return to BikeCheck map</a>
+        </div>
       </div>
     </script>
 
@@ -146,6 +160,7 @@
     <script src="/js/views/modal_back_button.js"></script>
     <script src="/js/views/bike_event_options.js"></script>
     <script src="/js/views/bike_event_new.js"></script>
+    <script src="/js/views/bike_event_saved.js"></script>
 
     <% if (typeof(map) !== 'undefined' && map) { %>
       <script src="/js/views/map.js"></script>
