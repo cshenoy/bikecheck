@@ -5,7 +5,7 @@ BikeCheck.Views.Map = Parse.View.extend({
   },
 
   initialize: function(){
-    _.bindAll(this, 'add', 'addMarker', 'checkMarkers', 'iconBase');
+    _.bindAll(this, 'add', 'addMarker', 'checkMarkers', 'iconBase', 'refresh');
     this.render();
   },
 
@@ -17,15 +17,24 @@ BikeCheck.Views.Map = Parse.View.extend({
   	this.mapOptions = {
 	    center: new google.maps.LatLng(38.8935965, -77.014576),
 	    zoom: 13,
-	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	    mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControl: false,
+      panControl: false,
+      panControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_TOP
+      },
+      zoomControl: true,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.LARGE,
+        position: google.maps.ControlPosition.LEFT_CENTER
+      }
 	  };
 
 	  this.map = new google.maps.Map(document.getElementById(this.id), this.mapOptions);
-
 	  // Add Marker Btn
 	  this.markerBtn = document.createElement('div');
 	  this.markerBtn.style.padding = '5px';
-	  this.markerBtn.style.margin = '5px';
+	  this.markerBtn.style.margin = '50px 5px 5px';
 	  this.markerBtn.className = 'add-marker';
 
 	  if (!Parse.User.current()) {
@@ -53,9 +62,15 @@ BikeCheck.Views.Map = Parse.View.extend({
 
 	  google.maps.event.addDomListener(this.markerBtn, 'click', this.add);
 
+    this.markers = [];
+
     this.checkMarkers();
 
 		return this;
+  },
+
+  refresh: function(){
+    this.markerClusterer = new MarkerClusterer(this.map, this.markers);
   },
 
   add: function(){
@@ -122,6 +137,7 @@ BikeCheck.Views.Map = Parse.View.extend({
       google.maps.event.addListener(marker, 'click', function() {
         infowindow.open(this.map, marker);
       });
+      this.markers.push(marker);
     } else {
         var view = new BikeCheck.Views.BikeEventOptions({ model: bikeEvent, map: this.map });
         return BikeCheck.displayModal().appendToModalBody(view.render().el);
@@ -130,10 +146,13 @@ BikeCheck.Views.Map = Parse.View.extend({
 
   checkMarkers: function(){
     var self = this;
-    $.get('/json/all', function(d){
+    var getMarkers = $.get('/json/all', function(d){
       for(var i in d){
         self.addMarker(d[i], true);
       }
-    });
+    })
+    .done(function(){
+      self.refresh();
+    })
   }
 });
