@@ -1,9 +1,12 @@
 // index.js
 var Kaiseki = require('kaiseki');
 
+// Settings
+var authKeys = require('../settings/authentication.json');
+
 // instantiate
-var APP_ID = 'JfnQBEqS47BirgQbg6LrlLzTBndhqWlOLU7p74zt';
-var REST_API_KEY = 'Ei57rw4ouA30Zk5Vg5jYGX2F2uVLiQFZ2CQfUird';
+var APP_ID = authKeys.parse.app_id;
+var REST_API_KEY = authKeys.parse.rest_api_key;
 var kaiseki = new Kaiseki(APP_ID, REST_API_KEY);
 
 routes = function(app){
