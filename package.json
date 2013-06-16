@@ -1,12 +1,16 @@
 {
   "name": "bikecheck",
-  "description": "commuting demo",
+  "description": "Bike theft and commuting reporting",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
     "ejs": "*",
     "kaiseki": "*",
     "express": "3.2.x"
+  },
+  "devDependencies": {
+    "mocha": "1.9.0",
+    "chai": "*"
   },
   "engines": {
     "node": "0.10.x",
