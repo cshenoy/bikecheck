@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script>
+      mocha.ui('bdd');
+      mocha.reporter('html');
+      var expect = chai.expect;
+    </script>
+
+    <!-- libs -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="../public/js/lib/underscore.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
+
+    <!-- source files -->
+    <script src="../public/js/bike_check.js"></script>
+    <script src="../public/js/models/bike_event.js"></script>
+    <script src="../public/js/collections/bike_events.js"></script>
+
+    <!-- tests -->
+    <script src="models/bikeevent.test.js"></script>
+
+    <script>
+      if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+      else { mocha.run(); }
+    </script>
+  </body>
+</html>
